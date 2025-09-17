@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wiki de Sensores de Temperatura - Completo</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #222;
+    margin: 0;
+    padding: 1rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  header {
+    padding: 2rem 0 1rem;
+    text-align: center;
+    border-bottom: 2px solid #007acc;
+  }
+  header h1 {
+    font-weight: 700;
+    color: #007acc;
+    font-size: 2.8rem;
+    margin-bottom: 0.25rem;
+  }
+  header p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  nav {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  nav button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    background-color: #007acc;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  nav button:hover, nav button.active {
+    background-color: #005fa3;
+  }
+  section {
+    display: none;
+    margin-top: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    height: 0;
+    overflow: hidden;
+  }
+  section.active {
+    display: block;
+    opacity: 1;
+    height: auto;
+  }
+  h2 {
+    color: #004a99;
+    font-weight: 700;
+    font-size: 2rem;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    margin-top: 1.4rem;
+    color: #0066cc;
+  }
+  p {
+    margin: 0.9rem 0;
+    font-size: 1.1rem;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 0.8rem 0 1.2rem 1.6rem;
+    font-size: 1.05rem;
+    color: #333;
+  }
+  img {
+    display: block;
+    max-width: 320px;
+    margin: 1rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,122,204,0.35);
+    transition: transform 0.3s ease;
+  }
+  img:hover {
+    transform: scale(1.05);
+  }
+  table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 1.05rem;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.65rem 1rem;
+    text-align: center;
+  }
+  th {
+    background-color: #007acc;
+    color: white;
+    font-weight: 600;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    padding: 1.5rem 0 3rem;
+    margin-top: 3rem;
+  }
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 6px;
+    background-color: #007acc;
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.25s ease-out;
+  }
+  .indice-contenido {
+    background-color: #f0f8ff;
+    border-left: 4px solid #007acc;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .indice-contenido a {
+    color: #005fa3;
+    text-decoration: none;
+    display: block;
+    margin: 0.15rem 0;
+  }
+  .indice-contenido a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header>
+  <h1>Wiki de Sensores de Temperatura</h1>
+  <p>Guía completa que combina teoría, práctica y consideraciones para el uso efectivo de sensores de temperatura.</p>
+</header>
+
+<nav>
+  <button class="active" data-target="introduccion">Introducción</button>
+  <button data-target="principios">Principios Físicos</button>
+  <button data-target="clasificacion">Clasificación</button>
+  <button data-target="rtd">RTD</button>
+  <button data-target="termistores">Termistores</button>
+  <button data-target="semiconductores">Semiconductores</button>
+  <button data-target="termopares">Termopares</button>
+  <button data-target="comparativa">Comparativa</button>
+  <button data-target="aplicaciones">Aplicaciones</button>
+  <button data-target="seleccion">Selección y Mantenimiento</button>
+  <button data-target="normas">Normas y Calibración</button>
+  <button data-target="bibliografia">Bibliografía</button>
+  <button data-target="videos">Videos Educativos</button>
+  <button data-target="video-personal">Video Personal</button>
+</nav>
+
+<section id="introduccion" class="active">
+  <h2>Introducción</h2>
+  <p>La temperatura es una medida fundamental para controlar y entender procesos en la naturaleza y la industria. Los <strong>sensores de temperatura</strong> son dispositivos diseñados para detectar la temperatura de un objeto o ambiente y convertir esa información en una señal que puede ser interpretada y utilizada, generalmente eléctrica o digital.</p>
+  <p>Estos sensores no solo miden el calor, sino que también permiten el control automático de sistemas, la supervisión remota, y la protección ante condiciones extremas, asegurando calidad, seguridad y eficiencia.</p>
+  <p>La correcta selección del sensor apropiado depende de varios factores como el rango de temperatura, precisión requerida, ambiente de uso, respuesta y costo.</p>
+</section>
+
+<section id="principios">
+  <h2>Principios Físicos Básicos</h2>
+  <div class="indice-contenido">
+    <strong>Índice de contenido</strong>
+    <a href="#resistencia-electrica">Resistencia eléctrica</a>
+    <a href="#efecto-termoelectrico">Efecto termoeléctrico</a>
+    <a href="#dilatacion-termica">Dilatación térmica</a>
+    <a href="#radiacion-infrarroja">Radiación infrarroja</a>
+  </div>
+  <h3 id="resistencia-electrica">Resistencia eléctrica</h3>
+  <p>Muchos sensores como los RTD o termistores miden la temperatura a partir de la variación en la resistencia eléctrica de ciertos materiales con la temperatura.</p>
+
+  <h3 id="efecto-termoelectrico">Efecto termoeléctrico</h3>
+  <p>El efecto Seebeck consiste en que una unión de dos metales distintos genera un voltaje cuando existe una diferencia de temperaturas entre sus extremos. Los termopares utilizan este efecto para medir la temperatura.</p>
+
+  <h3 id="dilatacion-termica">Dilatación térmica</h3>
+  <p>Los termómetros mecánicos se basan en la dilatación de líquidos o metales bimetálicos cuando se les aplica calor, provocando un cambio físico visible que se puede medir.</p>
+
+  <h3 id="radiacion-infrarroja">Radiación infrarroja</h3>
+  <p>Los sensores sin contacto, o pirómetros, detectan la radiación térmica emitida por los objetos a diferentes temperaturas para medirlos sin necesidad de contacto.</p>
+</section>
+
+<section id="clasificacion">
+  <h2>Clasificación de Sensores de Temperatura</h2>
+  <p>Los sensores de temperatura se clasifican en función del principio físico que utilizan, el material de fabricación y la forma en que entregan la señal. Conocer esta clasificación ayuda a seleccionar el tipo adecuado para cada aplicación:</p>
+  <ul>
+    <li>
+      <strong>Termómetros mecánicos:</strong> 
+      Funcionan aprovechando la dilatación térmica de materiales. Los más comunes son:
+      <ul>
+        <li><b>Bimetálicos:</b> Formados por dos metales con diferente coeficiente de expansión. Cuando varía la temperatura, se curvan accionando una aguja indicadora. Son robustos y fiables para medidas locales en procesos industriales.</li>
+        <li><b>De líquido en vidrio:</b> Ejemplo clásico es el termómetro de mercurio o alcohol, donde el líquido se expande al calentarse y sube en un capilar graduado. Muy usados en laboratorios y para medición ambiental.</li>
+      </ul>
+      <img src="https://blog.wika.com/es/files/2013/11/term%C3%B3metro-bimet%C3%A1lico-wika.png" alt="Termómetro mecánico" />
+    </li>
+    <li>
+      <strong>Sensores eléctricos:</strong> 
+      Su funcionamiento depende de variaciones de propiedades eléctricas con la temperatura.
+      <ul>
+        <li><b>RTD:</b> La resistencia de ciertos metales varía casi linealmente con la temperatura, permitiendo gran precisión y estabilidad.</li>
+        <li><b>Termistores:</b> Semiconductores con alta sensibilidad, útiles en rangos más pequeños y en electrónica.</li>
+        <li><b>Semiconductores:</b> Integrados como el LM35 o DS18B20, útiles para labores electrónicas y monitoreo digital.</li>
+      </ul>
+      <img src="https://masterplc.com/wp-content/uploads/2023/07/Sensores-de-Temperatura.webp" alt="Sensor eléctrico" />
+    </li>
+    <li>
+      <strong>Sensores termoeléctricos:</strong>
+      Basados en el efecto Seebeck, generan una pequeña tensión proporcional a la diferencia de temperatura entre dos metales distintos, formando un <b>termopar</b>. 
+      <ul>
+        <li>Muy utilizados en la industria por su amplio rango operativo, bajo costo y gran robustez.</li>
+        <li>Indispensables en hornos, motores, procesos metálicos y ambientes donde otros sensores no resistirían.</li>
+      </ul>
+      <img src="https://www.datocms-assets.com/53444/1663836842-thermocouple-sensor.jpg?auto=format&fit=max&w=1024&dpr=4" alt="Termopar" />
+    </li>
+    <li>
+      <strong>Sensores sin contacto (pirómetros):</strong>
+      Miden la energía de radiación infrarroja emitida por un cuerpo, convirtiéndola en temperatura.
+      <ul>
+        <li>Ideales para temperaturas muy elevadas o en piezas en movimiento, o donde el contacto físico puede alterar la medición.</li>
+        <li>Se emplean en fundiciones, hornos de alta temperatura y controles rápidos en líneas productivas.</li>
+      </ul>
+      <img src="https://hifisac.com/web/image/product.product/5373/image_1024/%5BHT650C%5D%20Pirometro%20HABOTEST%20HT650C%20Term%C3%B3metro%20Infrarrojo%20Digital%20Industrial%20sin%20Contacto%20LCD%20Medidor%20de%20Temperatura%20-30%C2%B0C%20~%20550%C2%B0C%20?unique=6ff8e26" alt="Pirómetro infrarrojo" />
+    </li>
+  </ul>
+  <p>
+    Además de esta clasificación principal, se suelen subdividir por características adicionales: 
+    <b>velocidad de respuesta</b>, <b>precisión</b>, <b>rango de operación</b> y compatibilidad con sistemas electrónicos, factores esenciales para su correcta selección en aplicaciones reales.
+  </p>
+</section>
+
+<section id="rtd">
+  <h2>RTD (Resistance Temperature Detector)</h2>
+  <p>Los RTD son sensores que basan su operación en el cambio lineal de la resistencia eléctrica de metales, típicamente platino, con la temperatura. El modelo estándar es el Pt100, que tiene una resistencia de 100 ohmios a 0 °C.</p>
+  <img src="https://srcsl.com/wp-content/uploads/2023/06/sensor-de-temperatura-600x288.jpg" alt="Sensor RTD Pt100" loading="lazy" />
+  <p>Este tipo de sensor es muy valorado por su alta precisión, estabilidad y reproducibilidad a largo plazo, siendo ampliamente utilizado en la industria y laboratorios.</p>
+  <h3>Principio de funcionamiento</h3>
+  <p>La resistencia eléctrica del platino aumenta con la temperatura en una relación casi lineal. Midiendo esta resistencia mediante circuitos precisos, se puede determinar la temperatura con gran exactitud.</p>
+  <h3>Ventajas y Desventajas</h3>
+  <ul>
+    <li>Alta precisión y repetibilidad.</li>
+    <li>Estabilidad térmica y química.</li>
+    <li>Mayor costo comparado con otros sensores.</li>
+    <li>Requiere circuitos electrónicos sofisticados para su lectura.</li>
+    <li>Fragilidad del elemento sensor.</li>
+  </ul>
+</section>
+
+<section id="termistores">
+  <h2>Termistores</h2>
+  <p>Los termistores son sensores basados en materiales semiconductores cuya resistencia cambia rápidamente con la temperatura.</p>
+  <img src="https://lh3.googleusercontent.com/aPTYo0wwQaegO3957_ZW5CQW688hd0u0g3SJrVfla1nvyBM5MFieYRQdbycHHir3yFH5bWZGtxxBi4evE1ze-mqRu8afrfzHAw9YebilgIFM14tQn_dQPAPL7lfm3stRm3ZaBFgo_rhGUN_TEVV-DZ9wDzOAoAB1JbKY_YKs9JlhsmuWGqbDY3koJdONR2XzRDEYwaqkI43SWlM_zbZx09gNS9y_5JzJvxOpXjnSTuwMW2NX3vAQNWG1JnBvqrgiPvMm3WpUGwoC2wu7WzygO60voXj-u-iR_vQHjRIYEHG03yWktXZuu0nJmSl5AxcjMIzi0nk3wzunLey9kLKU-hpymbsoyo4cQKQOq8LlCfTxd8xjOtHjOpZlA5LMrNdAiKYHXkwIQo4ws05mJmT_gAQbsSIYXRCgyJX9lKTgr9-sRDiGdcsfSNk7811YYD_fdVLP4LeRMVcTbOsd8W5VUU69dGJF1hVbtNdSFFcj6gNNumKabOdzseAwVntPScFkxRMDPchQq_aUpyU3cUniuABOGHDk8AhkQJp1BaNdI16wHYkfRa1LUr274zb2iPaaD0fzX2fqGCPMfsK1HdrwHItB9TaGK2wr53-XfO48qoBG8ELeb7scMYTJanE_2DBodPv2C1hd1tio_9K30ggnGqsaq0h9uHJuniLP0P_Zvip03Wy2s8cB39Mlh0tJz4L1YxTcMjLI9-aioPusl5RuWSCi=w1027-h296-no" alt="Termistor NTC y PTC" loading="lazy" />
+  <p>Se clasifican en dos tipos:</p>
+  <ul>
+    <li><strong>NTC (Coeficiente de Temperatura Negativo):</strong> La resistencia disminuye cuando la temperatura aumenta.</li>
+    <li><strong>PTC (Coeficiente de Temperatura Positivo):</strong> La resistencia aumenta con la temperatura.</li>
+  </ul>
+  <p>Su alta sensibilidad los hace ideales para control electrónico y monitoreo en rangos limitados.</p>
+</section>
+
+<section id="semiconductores">
+  <h2>Sensores de Semiconductores</h2>
+  <p>Estos sensores utilizan circuitos integrados para generar una señal analógica o digital proporcional a la temperatura. Ejemplos comunes son el LM35 o el DS18B20.</p>
+  <img src="https://www.luisllamas.es/wp-content/uploads/2015/07/arduino-lm35-sensor.webp" alt="Sensor semiconductor LM35" loading="lazy" />
+  <p>Destacan por su bajo costo, tamaño pequeño y fácil integración con microcontroladores, aunque con menor precisión y rango que los sensores industriales.</p>
+</section>
+
+<section id="termopares">
+  <h2>Termopares</h2>
+  <p>Los termopares consisten en la unión de dos metales diferentes que generan un voltaje pequeño cuando hay una diferencia de temperatura entre las uniones, gracias al efecto Seebeck.</p>
+  <img src="https://resistenciasindustrialescessa.com/new/wp-content/uploads/2018/06/termopar-temperature-sensor-resistenciasindustrialescessa.jpg" alt="Termopar" loading="lazy" />
+  <p>Son económicos, robustos y cubren un amplio rango de temperaturas, desde aproximadamente -200 °C hasta más de 1800 °C.</p>
+  <h3>Tipos comunes</h3>
+  <ul>
+    <li><strong>Tipo J:</strong> Hierro-constantán; común en manejo hasta 750 °C.</li>
+    <li><strong>Tipo K:</strong> Nicromo-constantán; rango amplio, hasta 1250 °C, muy usado en industria.</li>
+    <li><strong>Tipo T:</strong> Cobre-constantán; para bajas temperaturas y criogénicos.</li>
+  </ul>
+  <h3>Consideraciones</h3>
+  <p>Para mediciones precisas necesitan compensación de la unión fría y calibración frecuente.</p>
+</section>
+
+<section id="comparativa">
+  <h2>Comparativa entre Sensores de Temperatura</h2>
+  <p>Las características principales de los sensores se resumen en esta tabla:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Sensor</th>
+        <th>Precisión</th>
+        <th>Rango (°C)</th>
+        <th>Costo</th>
+        <th>Robustez</th>
+        <th>Aplicaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>RTD</td>
+        <td>Alta</td>
+        <td>-200 a 600</td>
+        <td>Alto</td>
+        <td>Media</td>
+        <td>Industria, laboratorios</td>
+      </tr>
+      <tr>
+        <td>Termistor</td>
+        <td>Muy alta</td>
+        <td>-50 a 150</td>
+        <td>Bajo</td>
+        <td>Baja</td>
+        <td>Electrónica, HVAC</td>
+      </tr>
+      <tr>
+        <td>Semiconductores</td>
+        <td>Media</td>
+        <td>-55 a 150</td>
+        <td>Bajo</td>
+        <td>Baja</td>
+        <td>Electrónica, proyectos DIY</td>
+      </tr>
+      <tr>
+        <td>Termopares</td>
+        <td>Media</td>
+        <td>-200 a 1800</td>
+        <td>Bajo</td>
+        <td>Alta</td>
+        <td>Industrias, hornos</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="aplicaciones">
+  <h2>Aplicaciones</h2>
+  <p>Los sensores de temperatura se emplean en múltiples áreas para optimizar procesos, asegurar calidad y proteger equipos.</p>
+  <ul>
+    <li><strong>Industria manufacturera:</strong> desde hornos a líneas de producción para control preciso.</li>
+    <li><strong>Climatización y refrigeración:</strong> regulación ambiental en edificios y cámaras frigoríficas.</li>
+    <li><strong>Automoción:</strong> monitoreo térmico de motores y sistemas de escape.</li>
+    <li><strong>Medicina:</strong> termómetros digitales y dispositivos de monitoreo continuo.</li>
+    <li><strong>Meteorología y medio ambiente:</strong> estaciones y monitoreo de condiciones climáticas.</li>
+    <li><strong>Electrónica y robótica:</strong> protección térmica y control en equipos electrónicos.</li>
+  </ul>
+  <h3>Ejemplos prácticos:</h3>
+  <ul>
+    <li>Control térmico en hornos industriales para evitar daños y optimizar consumo.</li>
+    <li>Monitoreo en cámaras frigoríficas para conservación segura de productos.</li>
+    <li>Medición en motores automotrices para evitar desgaste prematuro.</li>
+  </ul>
+</section>
+
+<section id="seleccion">
+  <h2>Selección y Mantenimiento</h2>
+  <p>La elección correcta del sensor garantiza precisión y durabilidad:</p>
+  <ul>
+    <li>Asegurar que el sensor funcione dentro del rango de temperatura esperado.</li>
+    <li>Valorar la precisión necesaria y la sensibilidad.</li>
+    <li>Considerar el entorno: presencia de humedad, presión, vibración, sustancias corrosivas.</li>
+    <li>Tomar en cuenta el tiempo de respuesta para el proceso.</li>
+    <li>Verificar compatibilidad con sistemas electrónicos existentes.</li>
+  </ul>
+  <p>El mantenimiento periódico, limpieza y calibración asegura buen desempeño y longevidad.</p>
+</section>
+
+<section id="normas">
+  <h2>Normas y Calibración</h2>
+  <p>Los sensores deben cumplir normas internacionales estrictas para garantizar calidad y confianza:</p>
+  <ul>
+    <li><strong>ANSI, IEC e ISO:</strong> establecen estándares de fabricación y pruebas.</li>
+    <li><strong>Calibración:</strong> se realiza con patrones certificados en laboratorios especializados.</li>
+    <li><strong>Métodos:</strong> baños termostáticos, hornos calibrados y comparación con estándares.</li>
+    <li><strong>Frecuencia:</strong> depende de la criticidad y uso, pero es vital para mantenimientos preventivos.</li>
+  </ul>
+  <p>El cumplimiento normativo asegura que los sensores funcionen correctamente en aplicaciones críticas.</p>
+</section>
+
+<section id="bibliografia">
+  <h2>Bibliografía y referencias</h2>
+  <ul>
+    <li>ANSI/ISA-51.1-1979. American National Standard: Process Instrumentation Terminology.</li>
+    <li>IEC 60751:2008. Industrial platinum resistance thermometers and platinum temperature sensors.</li>
+    <li>ASTM E2877-13. Standard Guide for Digital Contact Thermometers.</li>
+    <li>Omega Engineering. <a href="https://www.omega.com/es-es/resources/temperature-sensors" target="_blank" rel="noopener">Guía de sensores de temperatura</a>.</li>
+    <li>National Instruments. <a href="https://www.ni.com/es-mx/innovations/white-papers/06/temperature-sensor-types.html" target="_blank" rel="noopener">Types of Temperature Sensors</a>.</li>
+    <li>B. G. Lipták, Instrument Engineers' Handbook: Process Measurement and Analysis, 4th Edition.</li>
+    <li>Teknologix. <a href="https://teknologix.com/blog/tipos-de-sensores-de-temperatura/" target="_blank" rel="noopener">Tipos de sensores de temperatura y sus aplicaciones</a>.</li>
+    <li>Analog Devices. <a href="https://www.analog.com/media/en/training-seminars/tutorials/mt-206.pdf" target="_blank" rel="noopener">Temperature Sensor Types and Applications (en inglés)</a>.</li>
+  </ul>
+  <p>Consulta estas fuentes para profundizar aún más sobre los distintos tipos de sensores, normativas y métodos de aplicación.</p>
+</section>
+
+<section id="videos">
+  <h2>Videos Educativos</h2>
+  <p>Estos videos ayudarán a mejorar la comprensión sobre los diferentes tipos de sensores de temperatura y su funcionamiento.</p>
+  
+  <div style="margin-bottom: 2rem;">
+    <h3>Sensores de Temperatura - Introducción</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/3SOlTXIc1Y8" frameborder="0" allowfullscreen></iframe>
+    <p>Video que explica las características de los sensores de temperatura más usados en la industria.</p>
+  </div>
+  
+  <div style="margin-bottom: 2rem;">
+    <h3>Tipos de sensores de temperatura – Conexión a sistemas</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/pxkj_AhYGs4" frameborder="0" allowfullscreen></iframe>
+    <p>Revisión práctica del funcionamiento de diferentes sensores, como RTD, termocupla y otros.</p>
+  </div>
+  
+  <div style="margin-bottom: 2rem;">
+    <h3>Funcionamiento y características de sensores de temperatura</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/PO3oV-GtFQQ" frameborder="0" allowfullscreen></iframe>
+    <p>Aprende el funcionamiento de sensores de temperatura industriales con ejemplos técnicos.</p>
+  </div>
+  
+  <div style="margin-bottom: 2rem;">
+    <h3>¿Cómo funciona un termopar?</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/xNKH4S2xkLM" frameborder="0" allowfullscreen></iframe>
+    <p>Explicación clara del principio de funcionamiento del termopar y sus tipos más comunes.</p>
+  </div>
+  
+  <div style="margin-bottom: 2rem;">
+    <h3>Sensor de Temperatura Infrarrojo MLX90614 // Medidor</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/Y-zzPDmpFXg" frameborder="0" allowfullscreen></iframe>
+    <p>Tutorial para construir un medidor de temperatura sin contacto con sensor infrarrojo y Arduino.</p>
+  </div>
+</section>
+
+<section id="video-personal">
+  <h2>Video Personal</h2>
+  <p>Sensores de temperatura:</p>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/zor7xN5bG_c?si=lys9kDh7sRi-MxVD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</section>
+
+<footer>
+  &copy; 2025 Wiki de Sensores de Temperatura.
+</footer>
+<script>
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+        sec.style.opacity = 0;
+        sec.style.height = '0px';
+      });
+      const id = button.getAttribute('data-target');
+      const activeSection = document.getElementById(id);
+      activeSection.classList.add('active');
+      activeSection.style.height = activeSection.scrollHeight + 'px';
+      activeSection.style.opacity = 1;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrollPercent + '%';
+  });
+</script>
+
+</body>
+</html>
+
